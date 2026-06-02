@@ -91,6 +91,12 @@ spp_helicity = {
     "ksp_convergence_test":  "skip",
     "ksp_norm_type":         "preconditioned",
     "ksp_minres_nutol":      1.0e-12,
+    # Diagnostic observability (printing only — no effect on the solve):
+    # without these the singular curl-curl A'/A solves run completely
+    # silently, so a non-converging grind toward ksp_max_it looks like a
+    # hang.  Shows the MINRES residual history + why the solve stopped.
+    "ksp_monitor":           None,
+    "ksp_converged_reason":  None,
     "mat_type":              "aij",
     "pc_type":               "python",
     "pc_python_type":        "firedrake.AssembledPC",
